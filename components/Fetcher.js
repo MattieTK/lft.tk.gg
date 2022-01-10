@@ -71,13 +71,11 @@ const Fetcher = ({ mobileBrowser }) => {
   };
 
   useEffect(() => {
-    if (data.status == "CLOSED") {
+    if (data?.status == "CLOSED") {
       setNotificationSent(false);
     }
-    return () => {
-      cleanup;
-    };
-  }, [data.status]);
+    return () => {};
+  }, [data]);
 
   const [notifications, setNotifications] = useState(
     checkNotificationsPermission()
