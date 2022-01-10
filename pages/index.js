@@ -97,9 +97,7 @@ export default function Home() {
       <Flex
         as="footer"
         sx={{
-          position: "fixed",
-          left: 0,
-          bottom: 0,
+          marginTop: [3, 4],
           width: "100%",
           backgroundColor: "accent",
           textAlign: "center",

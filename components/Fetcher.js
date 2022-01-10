@@ -84,9 +84,11 @@ const Fetcher = ({ mobileBrowser }) => {
 
   if (error) {
     console.error(error);
-    return <div>Error on loading checker. Refresh, or I might be broken. </div>;
+    return (
+      <Text>❌ Error on loading checker. Refresh, or I might be broken.</Text>
+    );
   } else if (!data) {
-    return <div>Loading data... </div>;
+    return <Spinner />;
   } else {
     console.log(data);
 
@@ -108,10 +110,6 @@ const Fetcher = ({ mobileBrowser }) => {
             getNotifications={getNotifications}
           />
           <Text as="h2">LFT orders are closed currently.</Text>
-          <Spinner
-            color="red"
-            sx={{ display: "block", margin: "auto", paddingTop: [2, 3] }}
-          />
           <Text sx={{ paddingTop: [3, 4] }}>
             Last checked:{" "}
             <ReactTimeAgo
@@ -137,9 +135,6 @@ const Fetcher = ({ mobileBrowser }) => {
               LFT orders are open.
             </Link>
           </Heading>
-          <Spinner
-            sx={{ display: "block", margin: "auto", paddingTop: [2, 3] }}
-          />
           <Text style={{ paddingTop: [3, 4] }}>
             Last checked:{" "}
             <ReactTimeAgo
