@@ -84,6 +84,7 @@ const Fetcher = ({ mobileBrowser }) => {
     console.log(data);
 
     if (data.status === "CLOSED") {
+      setNotificationSent(false);
       return (
         <Flex sx={{ flexDirection: "column", textAlign: "center" }}>
           {notifications == false ? (
