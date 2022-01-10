@@ -76,7 +76,7 @@ const Fetcher = () => {
   } else {
     console.log(data);
 
-    if (data.status === "SDSD") {
+    if (data.status === "CLOSED") {
       return (
         <Flex sx={{ flexDirection: "column", textAlign: "center" }}>
           {notifications == false ? (
@@ -111,7 +111,7 @@ const Fetcher = () => {
           </Text>
         </Flex>
       );
-    } else if (data.status === "CLOSED") {
+    } else if (data.status === "OPEN") {
       if (notifications == "granted") {
         sendNotification();
       }
