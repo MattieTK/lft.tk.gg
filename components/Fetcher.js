@@ -43,7 +43,7 @@ const Fetcher = ({ mobileBrowser }) => {
     }
   };
   const sendNotification = async () => {
-    if (typeof window !== "undefined" && mobileBrowser == false) {
+    if (typeof window !== "undefined" && mobileBrowser() == false) {
       if (notificationSent == false) {
         const lftNotification = new Notification("LFTs are available", {
           body: "Click to open order page",
@@ -77,7 +77,7 @@ const Fetcher = ({ mobileBrowser }) => {
   } else {
     console.log(data);
 
-    if (data.status === "CLOSED") {
+    if (data.status === "CLOSEd") {
       return (
         <Flex sx={{ flexDirection: "column", textAlign: "center" }}>
           {notifications == false ? (
@@ -109,7 +109,7 @@ const Fetcher = ({ mobileBrowser }) => {
           </Text>
         </Flex>
       );
-    } else if (data.status === "OPEN") {
+    } else if (data.status === "CLOSED") {
       if (notifications == "granted") {
         sendNotification();
       }
