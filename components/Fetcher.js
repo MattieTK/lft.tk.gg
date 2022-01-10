@@ -24,12 +24,12 @@ const Fetcher = ({ mobileBrowser }) => {
 
   const checkNotificationsPermission = () => {
     if (typeof window !== "undefined") {
-      if (Notification) {
-        if (Notification.permission === "granted") {
+      if (window.Notification) {
+        if (window.Notification.permission === "granted") {
           return "granted";
-        } else if (Notification.permission === "default") {
+        } else if (window.Notification.permission === "default") {
           return "default";
-        } else if (Notification.permission === "denied") {
+        } else if (window.Notification.permission === "denied") {
           return "denied";
         }
       }
@@ -39,7 +39,7 @@ const Fetcher = ({ mobileBrowser }) => {
   };
   const getNotifications = async () => {
     if (typeof window !== "undefined") {
-      const state = await Notification.requestPermission();
+      const state = await window.Notification.requestPermission();
       if (state === "granted") {
         setNotifications("granted");
       } else if (state === "denied") {
@@ -50,7 +50,7 @@ const Fetcher = ({ mobileBrowser }) => {
   const sendNotification = async () => {
     if (typeof window !== "undefined" && mobileBrowser() == false) {
       if (notificationSent == false) {
-        const lftNotification = new Notification("LFTs are available", {
+        const lftNotification = new window.Notification("LFTs are available", {
           body: "Click to open order page",
           requireInteraction: true,
           icon: "/lft-icon.jpg",
