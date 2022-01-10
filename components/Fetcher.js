@@ -24,12 +24,14 @@ const Fetcher = ({ mobileBrowser }) => {
 
   const checkNotificationsPermission = () => {
     if (typeof window !== "undefined") {
-      if (Notification.permission === "granted") {
-        return "granted";
-      } else if (Notification.permission === "default") {
-        return "default";
-      } else if (Notification.permission === "denied") {
-        return "denied";
+      if (Notification) {
+        if (Notification.permission === "granted") {
+          return "granted";
+        } else if (Notification.permission === "default") {
+          return "default";
+        } else if (Notification.permission === "denied") {
+          return "denied";
+        }
       }
     } else {
       return "not supported";

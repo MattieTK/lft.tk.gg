@@ -20,6 +20,12 @@ const NotificationButton = ({ notifications, getNotifications }) => {
         to request again.
       </Text>
     );
+  } else if (notifications == "not supported") {
+    return (
+      <Text as="h3" sx={{ padding: [3, 4] }}>
+        Notifications are not supported on this browser.
+      </Text>
+    );
   } else return null;
 };
 
