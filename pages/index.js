@@ -25,14 +25,14 @@ export default function Home() {
           locale: "en_GB",
           url: "https://lft.tk.gg",
           site_name: "LFT Notifications",
-          images: {
-            default: {
+          images: [
+            {
               url: "https://lft.tk.gg/lft.png",
               width: 256,
               height: 240,
               alt: "LFT Notifications",
             },
-          },
+          ],
         }}
       />
 
