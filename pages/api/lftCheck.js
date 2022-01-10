@@ -20,6 +20,7 @@ export default async function handler(req, res) {
   const data = await fetch(lftAPI, { headers: { ...headers } });
   const json = await data.json();
   const date = new Date();
+  console.log(`API response: `, data.status);
   console.log("checked at ", date);
   res.setHeader("Cache-Control", "max-age: 0, s-maxage=30");
   if (json.status === "CLOSE") {

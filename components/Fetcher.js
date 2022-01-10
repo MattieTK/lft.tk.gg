@@ -3,12 +3,12 @@ import TimeAgo from "javascript-time-ago";
 import ReactTimeAgo from "react-time-ago";
 import en from "javascript-time-ago/locale/en.json";
 import { useState } from "react";
-import { Heading, Box, Button, Flex, Text, Link } from "theme-ui";
+import { Heading, Box, Button, Flex, Text, Link, Spinner } from "theme-ui";
 import NotificationButton from "./NotificationButton";
 
 TimeAgo.addDefaultLocale(en);
 
-const Fetcher = () => {
+const Fetcher = ({ mobileBrowser }) => {
   const fetcher = async function (...args) {
     const data = await fetch(...args);
     const json = await data.json();
@@ -43,7 +43,7 @@ const Fetcher = () => {
     }
   };
   const sendNotification = async () => {
-    if (typeof window !== "undefined") {
+    if (typeof window !== "undefined" && mobileBrowser == false) {
       if (notificationSent == false) {
         const lftNotification = new Notification("LFTs are available", {
           body: "Click to open order page",
@@ -77,7 +77,7 @@ const Fetcher = () => {
   } else {
     console.log(data);
 
-    if (data.status === "CLOSED") {
+    if (data.status === "OPEN") {
       return (
         <Flex sx={{ flexDirection: "column", textAlign: "center" }}>
           {notifications == false ? (
@@ -95,6 +95,10 @@ const Fetcher = () => {
             getNotifications={getNotifications}
           />
           <Text as="h2">LFT orders are closed currently.</Text>
+          <Spinner
+            color="red"
+            sx={{ display: "block", margin: "auto", paddingTop: [2, 3] }}
+          />
           <Text sx={{ paddingTop: [3, 4] }}>
             Last checked:{" "}
             <ReactTimeAgo
@@ -105,8 +109,8 @@ const Fetcher = () => {
           </Text>
         </Flex>
       );
-    } else if (data.status === "OPEN") {
-      if (notifications == "granted") {
+    } else if (data.status === "CLOSED") {
+      if (notifications == "granted" && window.Notification) {
         sendNotification();
       }
       return (
@@ -120,6 +124,9 @@ const Fetcher = () => {
               LFT orders are open.
             </Link>
           </Heading>
+          <Spinner
+            sx={{ display: "block", margin: "auto", paddingTop: [2, 3] }}
+          />
           <Text style={{ paddingTop: [3, 4] }}>
             Last checked:{" "}
             <ReactTimeAgo
