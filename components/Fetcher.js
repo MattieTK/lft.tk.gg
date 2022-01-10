@@ -2,7 +2,7 @@ import useSWR from "swr";
 import TimeAgo from "javascript-time-ago";
 import ReactTimeAgo from "react-time-ago";
 import en from "javascript-time-ago/locale/en.json";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Heading, Box, Button, Flex, Text, Link, Spinner } from "theme-ui";
 import NotificationButton from "./NotificationButton";
 import { usePlausible } from "next-plausible";
@@ -70,6 +70,15 @@ const Fetcher = ({ mobileBrowser }) => {
     }
   };
 
+  useEffect(() => {
+    if (data.status == "CLOSED") {
+      setNotificationSent(false);
+    }
+    return () => {
+      cleanup;
+    };
+  }, [data.status]);
+
   const [notifications, setNotifications] = useState(
     checkNotificationsPermission()
   );
@@ -84,7 +93,6 @@ const Fetcher = ({ mobileBrowser }) => {
     console.log(data);
 
     if (data.status === "CLOSED") {
-      setNotificationSent(false);
       return (
         <Flex sx={{ flexDirection: "column", textAlign: "center" }}>
           {notifications == false ? (
