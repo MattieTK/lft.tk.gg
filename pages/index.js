@@ -19,6 +19,7 @@ export default function Home() {
         description="A minimal app to notify you when LFTs are available on the NHS home delivery scheme"
         twitter={{
           site: "@MattieTK",
+          handle: "@MattieTK",
         }}
         openGraph={{
           type: "website",
