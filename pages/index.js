@@ -5,49 +5,54 @@ import { useState } from "react";
 import useSWR from "swr";
 import Fetcher from "../components/Fetcher";
 import Notification from "react-web-notification";
+import { Box, Button, Text, Heading, Container, Flex } from "theme-ui";
 
 export default function Home() {
-  const [notifications, setNotifications] = useState(false);
-
-  handlePermissionGranted() {
-    console.log("Permission Granted");
-    this.setState({
-      ignore: false
-    });
-  }
-  handlePermissionDenied() {
-    console.log("Permission Denied");
-    this.setState({
-      ignore: true
-    });
-  }
-  handleNotSupported() {
-    console.log("Web Notification not Supported");
-    this.setState({
-      ignore: true
-    });
-  }
-  
   return (
-    <div className={styles.container}>
+    <Container>
       <Head>
         <title>LFT notifications</title>
         <meta
           name="description"
           content="A minimal app to tell you when LFTs are available"
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/lft-icon.jpg" />
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>LFT Notifications</h1>
+      <Flex
+        sx={{
+          minHeight: "100vh",
+          padding: "4rem 0",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Box
+          sx={{
+            maxWidth: "50%",
+            maxHeight: "10%",
+            display: "block",
+          }}
+        >
+          <Image
+            src="/lft.png"
+            width={256}
+            height={240}
+            alt="Lateral Flow Test (as drawn by me!)"
+            layout="intrinsic"
+          />
+        </Box>
+        <Heading as="h1" sx={{ fontSize: [6, 7, 8] }}>
+          LFT Notifications
+        </Heading>
 
-        <p className={styles.description}>
-          Accept notifications, leave the window open, and get a notification
-          when tests are available again.
-        </p>
+        <Text sx={{ padding: [4, 5], fontSize: [4, 5], textAlign: "center" }}>
+          Leave the window open, and get a notification when LFTs are available
+          again.
+        </Text>
         <Fetcher />
-      </main>
-    </div>
+      </Flex>
+    </Container>
   );
 }

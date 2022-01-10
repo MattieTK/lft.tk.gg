@@ -24,12 +24,12 @@ export default async function handler(req, res) {
   if (json.status === "CLOSE") {
     res.status(200).json({
       status: "CLOSED",
-      timeChecked: date,
+      timeChecked: date.getTime(),
     });
   } else {
     res.status(200).json({
       status: "OPEN",
-      timeChecked: date,
+      timeChecked: date.getTime(),
     });
   }
 }
