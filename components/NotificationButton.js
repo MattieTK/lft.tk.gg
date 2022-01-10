@@ -1,6 +1,6 @@
 import { Button, Text, Link } from "theme-ui";
 
-const NotificationButton = ({ notifications }) => {
+const NotificationButton = ({ notifications, getNotifications }) => {
   if (notifications == "default") {
     return (
       <Button

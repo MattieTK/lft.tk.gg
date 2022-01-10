@@ -90,7 +90,10 @@ const Fetcher = () => {
           ) : (
             ""
           )}
-          <NotificationButton notifications={notifications} />
+          <NotificationButton
+            notifications={notifications}
+            getNotifications={getNotifications}
+          />
           <Text as="h2">LFT orders are closed currently.</Text>
           <Text sx={{ paddingTop: [3, 4] }}>
             Last checked:{" "}
@@ -108,7 +111,10 @@ const Fetcher = () => {
       }
       return (
         <Flex sx={{ flexDirection: "column", textAlign: "center" }}>
-          <NotificationButton notifications={notifications} />
+          <NotificationButton
+            notifications={notifications}
+            getNotifications={getNotifications}
+          />
           <Heading as="h2">
             <Link href="https://test-for-coronavirus.service.gov.uk/order-lateral-flow-kits">
               LFT orders are open.
