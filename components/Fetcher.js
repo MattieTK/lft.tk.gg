@@ -5,10 +5,13 @@ import en from "javascript-time-ago/locale/en.json";
 import { useState } from "react";
 import { Heading, Box, Button, Flex, Text, Link, Spinner } from "theme-ui";
 import NotificationButton from "./NotificationButton";
+import { usePlausible } from "next-plausible";
 
 TimeAgo.addDefaultLocale(en);
 
 const Fetcher = ({ mobileBrowser }) => {
+  const plausible = usePlausible();
+
   const fetcher = async function (...args) {
     const data = await fetch(...args);
     const json = await data.json();
@@ -59,6 +62,9 @@ const Fetcher = ({ mobileBrowser }) => {
             "_blank"
           );
         };
+        plausible("NotificationSent", {
+          props: Date.now(),
+        });
         setNotificationSent(true);
       }
     }
