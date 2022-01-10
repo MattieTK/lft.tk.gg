@@ -113,6 +113,12 @@ export default function Home() {
           by <Link href="https://twitter.com/MattieTK">@MattieTK</Link>
         </Text>
       </Flex>
+      <audio
+        src="/tab-sleep-silence.mp3"
+        loop={true}
+        id="sleep-prevention-audio"
+        autoPlay={true}
+      ></audio>
     </Container>
   );
 }
