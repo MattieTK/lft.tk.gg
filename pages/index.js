@@ -6,18 +6,35 @@ import useSWR from "swr";
 import Fetcher from "../components/Fetcher";
 import Notification from "react-web-notification";
 import { Box, Button, Text, Heading, Container, Flex } from "theme-ui";
+import { NextSeo } from "next-seo";
 
 export default function Home() {
   return (
     <Container>
       <Head>
-        <title>LFT notifications</title>
-        <meta
-          name="description"
-          content="A minimal app to tell you when LFTs are available"
-        />
         <link rel="icon" href="/lft-icon.jpg" />
       </Head>
+      <NextSeo
+        title="LFT Notifications | lft.tk.gg"
+        description="A minimal app to notify you when LFTs are available on the NHS home delivery scheme"
+        twitter={{
+          site: "@MattieTK",
+        }}
+        openGraph={{
+          type: "website",
+          locale: "en_GB",
+          url: "https://lft.tk.gg",
+          site_name: "LFT Notifications",
+          images: {
+            default: {
+              url: "https://lft.tk.gg/lft.png",
+              width: 256,
+              height: 240,
+              alt: "LFT Notifications",
+            },
+          },
+        }}
+      />
 
       <Flex
         sx={{
