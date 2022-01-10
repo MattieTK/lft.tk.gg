@@ -4,6 +4,7 @@ import ReactTimeAgo from "react-time-ago";
 import en from "javascript-time-ago/locale/en.json";
 import { useState } from "react";
 import { Heading, Box, Button, Flex, Text, Link } from "theme-ui";
+import NotificationButton from "./NotificationButton";
 
 TimeAgo.addDefaultLocale(en);
 
@@ -89,17 +90,7 @@ const Fetcher = () => {
           ) : (
             ""
           )}
-          {notifications == "denied" ? (
-            <Text as="h3" sx={{ padding: [3, 4] }}>
-              You have denied notifications. Please{" "}
-              <Link href="https://blog.pushpad.xyz/2017/08/reset-browser-permission-for-web-push-notifications/">
-                reset your browser permissions
-              </Link>{" "}
-              to request again.
-            </Text>
-          ) : (
-            ""
-          )}
+          <NotificationButton notifications={notifications} />
           <Text as="h2">LFT orders are closed currently.</Text>
           <Text sx={{ paddingTop: [3, 4] }}>
             Last checked:{" "}
@@ -117,27 +108,7 @@ const Fetcher = () => {
       }
       return (
         <Flex sx={{ flexDirection: "column", textAlign: "center" }}>
-          {notifications == "default" ? (
-            <Button
-              sx={{ padding: [2, 3], margin: [2, 3], cursor: "pointer" }}
-              onClick={() => getNotifications()}
-            >
-              Get notifications
-            </Button>
-          ) : (
-            ""
-          )}
-          {notifications == "denied" ? (
-            <Text as="h3" sx={{ padding: [3, 4] }}>
-              You have denied notifications. Please{" "}
-              <Link href="https://blog.pushpad.xyz/2017/08/reset-browser-permission-for-web-push-notifications/">
-                reset your browser permissions
-              </Link>{" "}
-              to request again.
-            </Text>
-          ) : (
-            ""
-          )}
+          <NotificationButton notifications={notifications} />
           <Heading as="h2">
             <Link href="https://test-for-coronavirus.service.gov.uk/order-lateral-flow-kits">
               LFT orders are open.
