@@ -77,7 +77,7 @@ const Fetcher = ({ mobileBrowser }) => {
   } else {
     console.log(data);
 
-    if (data.status === "OPEN") {
+    if (data.status === "CLOSED") {
       return (
         <Flex sx={{ flexDirection: "column", textAlign: "center" }}>
           {notifications == false ? (
@@ -109,8 +109,8 @@ const Fetcher = ({ mobileBrowser }) => {
           </Text>
         </Flex>
       );
-    } else if (data.status === "CLOSED") {
-      if (notifications == "granted" && window.Notification) {
+    } else if (data.status === "OPEN") {
+      if (notifications == "granted") {
         sendNotification();
       }
       return (
