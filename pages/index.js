@@ -118,6 +118,7 @@ export default function Home() {
         loop={true}
         id="sleep-prevention-audio"
         autoPlay={true}
+        muted={true}
       ></audio>
     </Container>
   );
