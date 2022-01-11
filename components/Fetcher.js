@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { Heading, Box, Button, Flex, Text, Link, Spinner } from "theme-ui";
 import NotificationButton from "./NotificationButton";
 import { usePlausible } from "next-plausible";
+import useWindowFocus from "use-window-focus";
 
 TimeAgo.addDefaultLocale(en);
 
@@ -21,6 +22,7 @@ const Fetcher = ({ mobileBrowser }) => {
     refreshInterval: 60000,
     refreshWhenHidden: true,
   });
+  const windowFocused = useWindowFocus();
 
   const checkNotificationsPermission = () => {
     if (typeof window !== "undefined") {
@@ -49,7 +51,7 @@ const Fetcher = ({ mobileBrowser }) => {
   };
   const sendNotification = async () => {
     if (typeof window !== "undefined" && mobileBrowser() == false) {
-      if (notificationSent == false) {
+      if (notificationSent == false && windowFocused == false) {
         const lftNotification = new window.Notification("LFTs are available", {
           body: "Click to open order page",
           requireInteraction: true,
