@@ -74,7 +74,7 @@ export default function Home() {
           <Image
             src="/lft.png"
             width={256}
-            height={240}
+            height={197}
             alt="Lateral Flow Test (as drawn by me!)"
             layout="intrinsic"
           />
