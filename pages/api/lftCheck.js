@@ -1,6 +1,7 @@
 export default async function handler(req, res) {
+  const local = process.env.VERCEL_ENV == "local";
   const lftAPI =
-    "https://api.key-worker-coronavirus-home-testing.service.gov.uk/blue/api/stock/check?token=91601ca8-ea24-408b-ade0-960de63eee8d";
+    "https://api.key-worker-coronavirus-home-testing.service.gov.uk/green/api/stock/check?token=6ecbfc9b-5d33-4666-ab64-eb86596f663e";
   const options = {
     headers: {
       accept: "application/json",
@@ -19,12 +20,12 @@ export default async function handler(req, res) {
     },
     referer: "https://get-home-lateral-flow-testing-kit.service.gov.uk/",
     referrerPolicy: "strict-origin-when-cross-origin",
-    body: '{"postCode":"SW11AA"}',
+    body: '{"postCode":""}',
     method: "POST",
     mode: "cors",
     credentials: "include",
-    cookie: process.env.cookie,
   };
+
   const data = await fetch(lftAPI, options);
   const json = await data.json();
   const date = new Date();
@@ -36,11 +37,13 @@ export default async function handler(req, res) {
     res.status(200).json({
       status: "CLOSED",
       timeChecked: date.getTime(),
+      data: local ? json : "",
     });
   } else if (json.hasStock === true) {
     res.status(200).json({
       status: "OPEN",
       timeChecked: date.getTime(),
+      data: local ? json : "",
     });
   } else {
     res.status(500).json({
