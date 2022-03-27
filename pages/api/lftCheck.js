@@ -1,7 +1,7 @@
 export default async function handler(req, res) {
   const local = process.env.VERCEL_ENV == "local";
   const lftAPI =
-    "https://api.key-worker-coronavirus-home-testing.service.gov.uk/green/api/stock/check?token=6ecbfc9b-5d33-4666-ab64-eb86596f663e";
+    "https://api.key-worker-coronavirus-home-testing.service.gov.uk/green/api/stock/check?token=3b8d5e9d-cd7e-481c-9139-21e2f87d826b";
   const options = {
     headers: {
       accept: "application/json",
