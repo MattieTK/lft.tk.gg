@@ -149,6 +149,10 @@ const Fetcher = ({ mobileBrowser }) => {
           </Text>
         </Flex>
       );
+    } else if (data.status === "ERROR") {
+      return (
+        <Text>❌ Error on loading checker. Refresh, or I might be broken.</Text>
+      );
     } else {
       return <div></div>;
     }
