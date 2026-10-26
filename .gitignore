@@ -32,3 +32,9 @@ yarn-error.log*
 
 # vercel
 .vercel
+/dist/
+.vinext/
+.cloudflare/
+
+# Added by Switchyard
+.dev.vars
